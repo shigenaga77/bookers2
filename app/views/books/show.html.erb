@@ -1,0 +1,49 @@
+<h2>User info</h2>
+    <table>
+        <tbody>
+            <tr>
+                <th>name</th>
+                <th>testes</th>
+            </tr>
+            <tr>
+                <th>introduction</th>
+                <th></th>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <% if @user == current_user %>
+        <p><%= link_to "user", root_path %></p>
+        <% end %>
+    </div>
+    
+<h2>New book</h2>
+  <%= form_with model: @book do |f| %>
+    <div class="field">
+        <%= f.label :title %><br>
+        <%= f.text_field :title %>
+    </div>
+    
+    <div class="field">
+        <%= f.label :Opinion %><br>
+        <%= f.text_area :body %>
+    </div>
+    
+    <div class="actions">
+    <%= f.submit 'Create Book' %>
+    </div>
+  <% end %>
+  
+<h2>Book detail</h2>
+  <table>
+    <tbody>
+        <tr>
+            <td><%= image_tag @book.user.get_profile_image(100,100) %></td>
+            <td><%= @book.title %></td>
+            <td><%= @book.body %></td>
+        </tr>
+            <% if @book.user == current_user %>
+            <%= link_to "削除", book_path(@book), method: :delete %>
+            <% end %>
+    </tbody>
+</table>
