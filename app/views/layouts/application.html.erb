@@ -12,31 +12,37 @@
 
   <body>
     <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="/"><span>Bookers</span></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
       <% if user_signed_in? %>
       <li>
-        <%= link_to "Bookers", root_path %>
+        <a class="nav-link text-light" href="user_path(current_user)"><i class="fas fa-home"></i>Home</a>
       </li>
       <li>
-        <%= link_to "Home", user_path(current_user) %>
+        <a class="nav-link text-light" href="user_session_path"><i class="fas fa-users"></i>Users</a>
       </li>
       <li>
-        <%= link_to "Users", user_session_path %>
+        <a class="nav-link text-light" href="books_path"><i class="fas fa-book-open"></i>Books</a>
       </li>
       <li>
-        <%= link_to "Books", books_path %>
-      </li>
-      <li>
-        <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
       </li>
       <% else %>
       <li>
-        <%= link_to "Bookers", root_path %>
+        <a class="nav-link text-light" href="/"><i class="fas fa-book-open"></i>Bookers</a>
       </li>
       <li>
-        <%= link_to "Home", root_path %>
+        <a class="nav-link text-light" href="/"><i class="fas fa-home"></i>Home</a>
       </li>
       <li>
-        <%= link_to "About", about_path %>
+        <a class="nav-link text-light" href="about_path"><i class="fas fa-link"></i></i>About</a>
       </li>
       <li>
         <%= link_to " Sign up ", new_user_registration_path %>
@@ -44,13 +50,20 @@
       <li>
         <%= link_to " Log in ", new_user_session_path %>
       </li>
+        <a class="nav-link text-light" href="new_user_registration_path"><i class="fas fa-link"></i></i>sign up</a>
     <% end %>
     </header>
     <main>
       <%= yield %>
     </main>
     <footer>
-      <div>CopyRight Infratop.inc</div>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="mx-auto">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
     </footer>
   </body>
 </html>
